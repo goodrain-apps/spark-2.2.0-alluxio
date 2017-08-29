@@ -8,12 +8,7 @@ ENV SPARK_VERSION=2.2.0
 ENV SPARK_HOME=/usr/local/spark-$SPARK_VERSION
 
 # Install dependencies
-RUN apt-get update \
-  && DEBIAN_FRONTEND=noninteractive apt-get install \
-    -yq --no-install-recommends  \
-      python python3 \
-  && apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache python3 python
 
 # Install Spark
 RUN mkdir -p "${SPARK_HOME}" \
@@ -30,6 +25,8 @@ EXPOSE 6066 7077 8080 8081
 
 # Copy start script
 COPY start-spark /opt/util/bin/start-spark
+
+# Copy alluxio-core-client jar  
 COPY alluxio-core-client-runtime-1.5.0-jar-with-dependencies.jar /opt/java/alluxio-core-client-runtime-1.5.0-jar-with-dependencies.jar
 # Fix environment for other users
 RUN echo "export SPARK_HOME=$SPARK_HOME" >> /etc/bash.bashrc \
