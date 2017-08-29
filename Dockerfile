@@ -29,7 +29,7 @@ COPY start-spark /opt/util/bin/start-spark
 # Copy alluxio-core-client jar  
 COPY alluxio-core-client-runtime-1.5.0-jar-with-dependencies.jar /opt/java/alluxio-core-client-runtime-1.5.0-jar-with-dependencies.jar
 # Fix environment for other users
-RUN touch /etc/bash.bashrc && echo "export SPARK_HOME=$SPARK_HOME" >> /etc/bash.bashrc \
+RUN echo "export SPARK_HOME=$SPARK_HOME" >> /etc/bash.bashrc \
   && echo 'export PATH=$PATH:$SPARK_HOME/bin'>> /etc/bash.bashrc
 
 # Add deprecated commands
