@@ -1,4 +1,4 @@
-FROM goodrainapps/openjdk:8u131-jre-alpine
+FROM goodrainapps/hadoop:2.8.0
 MAINTAINER zengqg@goodrain.com
 
 # Version
