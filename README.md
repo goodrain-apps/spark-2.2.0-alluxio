@@ -55,7 +55,7 @@ services:
       - "50070:50070"
   worker:
     image: singularities/spark
-    command: start-spark worker master
+    command: start-spark worker master:7070
     environment:
       SPARK_WORKER_CORES: 1
       SPARK_WORKER_MEMORY: 2g
