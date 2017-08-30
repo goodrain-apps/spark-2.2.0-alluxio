@@ -12,6 +12,13 @@ elif [[ "${1}" = 'worker' ]]; then
   # Start Spark Worker
   exec spark-class org.apache.spark.deploy.worker.Worker spark://$2
 else
-  echo "Invalid command '${1}'" >&2
-  exit 1
+  if [[ "${RUN_MODE}" == 'master' ]];then
+     # Start Spark Master
+     exec spark-class org.apache.spark.deploy.master.Master -h $(hostname)
+  elif [[ "${RUN_MODE}" = 'worker' ]]; then
+     # Start Spark Worker
+     exec spark-class org.apache.spark.deploy.worker.Worker spark://${SPARK_MASTER_HOST}:${SPARK_MASTER_PORT}
+  else   
+     echo "Invalid command '${1}'" >&2
+     exit 1
 fi

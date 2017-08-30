@@ -21,7 +21,7 @@ COPY spark-env.sh $SPARK_HOME/conf/spark-env.sh
 ENV PATH=$PATH:$SPARK_HOME/bin
 
 # Ports
-EXPOSE 6066 7077 8080 8081
+EXPOSE 6066 7070 8080 8081
 
 # Copy start script
 COPY start-spark /opt/util/bin/start-spark
@@ -39,3 +39,6 @@ RUN echo '#!/usr/bin/env bash' > /usr/bin/master \
   && echo '#!/usr/bin/env bash' > /usr/bin/worker \
   && echo 'start-spark worker $1' >> /usr/bin/worker \
   && chmod +x /usr/bin/worker
+
+ENV SPARK_MASTER_HOST 127.0.0.1
+ENV SPARK_MASTER_PORT 7070
