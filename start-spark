@@ -4,7 +4,9 @@
 if [[ -z "${HDFS_USER}" ]]; then
   export HDFS_USER=spark
 fi
-
+if [[ "${DEBUG}" ]];then
+  sleep ${DEBUG}
+fi  
 if [[ "${1}" = 'master' ]]; then
   # Start Spark Master
   exec spark-class org.apache.spark.deploy.master.Master -h $(hostname)
@@ -21,4 +23,5 @@ else
   else   
      echo "Invalid command '${1}'" >&2
      exit 1
+  fi   
 fi
