@@ -1,4 +1,4 @@
-FROM goodrainapps/hadoop:2.8.0
+FROM hub.goodrain.com/goodrain/hadoop:2.8.0
 MAINTAINER zengqg@goodrain.com
 
 # Version
