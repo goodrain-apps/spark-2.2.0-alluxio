@@ -5,6 +5,7 @@ if [[ -z "${HDFS_USER}" ]]; then
   export HDFS_USER=spark
 fi
 if [[ "${DEBUG}" ]];then
+  echo "debug is true ,will sleep ${DEBUG} seconds"
   sleep ${DEBUG}
 fi  
 if [[ "${1}" = 'master' ]]; then
